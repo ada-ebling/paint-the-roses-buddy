@@ -1,6 +1,7 @@
 {
   "name": "paint-the-roses-helper",
   "version": "0.1.0",
+  "homepage": "https://ada-ebling.github.io/paint-the-roses-buddy",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
