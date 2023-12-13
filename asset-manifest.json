@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.f855e6bc.css",
-    "main.js": "/static/js/main.4eee6525.js",
-    "static/js/787.0dd98e40.chunk.js": "/static/js/787.0dd98e40.chunk.js",
-    "index.html": "/index.html",
-    "main.f855e6bc.css.map": "/static/css/main.f855e6bc.css.map",
-    "main.4eee6525.js.map": "/static/js/main.4eee6525.js.map",
-    "787.0dd98e40.chunk.js.map": "/static/js/787.0dd98e40.chunk.js.map"
+    "main.css": "/paint-the-roses-buddy/static/css/main.f855e6bc.css",
+    "main.js": "/paint-the-roses-buddy/static/js/main.d31fe69e.js",
+    "static/js/787.0dd98e40.chunk.js": "/paint-the-roses-buddy/static/js/787.0dd98e40.chunk.js",
+    "index.html": "/paint-the-roses-buddy/index.html",
+    "main.f855e6bc.css.map": "/paint-the-roses-buddy/static/css/main.f855e6bc.css.map",
+    "main.d31fe69e.js.map": "/paint-the-roses-buddy/static/js/main.d31fe69e.js.map",
+    "787.0dd98e40.chunk.js.map": "/paint-the-roses-buddy/static/js/787.0dd98e40.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.4eee6525.js"
+    "static/js/main.d31fe69e.js"
   ]
 }
