@@ -5,7 +5,6 @@ const BUTTON_STATES = ['unchecked', 'crossed', 'checked'];
 
 export function AlikeLogicGrid({ elements }) {
   const [buttonStates, setButtonStates] = useState(Array.from(elements, () => Array.from(elements, () => BUTTON_STATES[0])));
-  const [buttonChecked, setButtonChecked] = useState(BUTTON_STATES[0]);
 
   const nextButtonState = (currentButtonState) => {
     const index = BUTTON_STATES.findIndex((el) => currentButtonState === el);
@@ -27,10 +26,6 @@ export function AlikeLogicGrid({ elements }) {
   const getOnClickFn = (firstCoord, secondCoord) => {
     return () => setButtonStates(buttonStateUpdate(firstCoord, secondCoord));
   }
-
-  const onCheckboxClick = () => {
-    setButtonChecked(nextButtonState(buttonChecked));
-  };
 
   return (<table>
     <thead>
