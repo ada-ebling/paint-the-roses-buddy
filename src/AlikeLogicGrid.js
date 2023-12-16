@@ -1,3 +1,5 @@
+import styles from './AlikeLogicGrid.module.css';
+
 export function AlikeLogicGrid({ elements }) {
   return (<table>
     <thead>
@@ -12,7 +14,7 @@ export function AlikeLogicGrid({ elements }) {
           <td>{element}</td>
           {Array.from(Array(elements.length - elementIndex), (_el, idx) => {
             return <td key={element.concat(elements[idx])}>
-              <button />
+              <button className={styles.checkboxButton} />
             </td>
           })}
         </tr>)
