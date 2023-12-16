@@ -11,20 +11,19 @@ export function AlikeLogicGrid({ elements }) {
     return index >= 2 ? BUTTON_STATES[0] : BUTTON_STATES[index + 1];
   };
 
-  const buttonStateUpdate = (firstCoord, secondCoord) => {
+  const buttonStateUpdate = (firstCoord, secondCoord, currentButtonState) => {
     return (prevState) => {
-      const currentButtonState = prevState[firstCoord][secondCoord];
       prevState[firstCoord][secondCoord] = nextButtonState(currentButtonState);
       return [...prevState];
     }
   }
 
-  const getCurrentButtonState = (firstCoord, secondCoord) => {
-    return buttonStates[firstCoord][secondCoord];
+  const getOnClickFn = (firstCoord, secondCoord, currentButtonState) => {
+    return () => setButtonStates(buttonStateUpdate(firstCoord, secondCoord, currentButtonState));
   }
 
-  const getOnClickFn = (firstCoord, secondCoord) => {
-    return () => setButtonStates(buttonStateUpdate(firstCoord, secondCoord));
+  const getCurrentButtonState = (firstCoord, secondCoord) => {
+    return buttonStates[firstCoord][secondCoord];
   }
 
   return (<table>
@@ -39,10 +38,11 @@ export function AlikeLogicGrid({ elements }) {
         return (<tr key={element.concat('content row')}>
           <td>{element}</td>
           {Array.from(Array(elements.length - elementIndex), (_el, idx) => {
+            const currentButtonState = getCurrentButtonState(elementIndex, idx);
             return <td key={element.concat(elements[idx])}>
               <button
-                className={`${styles.checkboxButton} ${styles[getCurrentButtonState(elementIndex, idx)]}`}
-                onClick={getOnClickFn(elementIndex, idx)}
+                className={`${styles.checkboxButton} ${styles[currentButtonState]}`}
+                onClick={getOnClickFn(elementIndex, idx, currentButtonState)}
               />
             </td>
           })}

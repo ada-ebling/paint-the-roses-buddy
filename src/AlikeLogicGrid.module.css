@@ -1,5 +1,12 @@
 .checkboxButton {
   width: 2rem;
   height: 2rem;
-  
+}
+
+.crossed {
+  background-color: black;
+}
+
+.checked {
+  background-color: green;
 }
