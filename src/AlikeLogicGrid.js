@@ -12,7 +12,7 @@ export function AlikeLogicGrid({ elements }) {
           <td>{element}</td>
           {Array.from(Array(elements.length - elementIndex), (_el, idx) => {
             return <td key={element.concat(elements[idx])}>
-              <input type={'checkbox'}></input>
+              <button />
             </td>
           })}
         </tr>)
