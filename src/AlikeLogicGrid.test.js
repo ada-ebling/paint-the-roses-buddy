@@ -12,18 +12,43 @@ describe('AlikeLogicGrid', () => {
   });
 
   describe('buttons', () => {
+    const classesOf = (element) => element.className.split(/\s+/);
+
     it('cycles through three classes on click', () => {
       const elements = ['1', '2', '3', '4'];
 
       render(<AlikeLogicGrid elements={elements} />);
       const firstButton = screen.getAllByRole('button')[0];
-      expect(firstButton.className.split(/\s+/)).toContain('unchecked');
+      expect(classesOf(firstButton)).toContain('unchecked');
       userEvent.click(firstButton);
-      expect(firstButton.className.split(/\s+/)).toContain('crossed');
+      expect(classesOf(firstButton)).toContain('crossed');
       userEvent.click(firstButton);
-      expect(firstButton.className.split(/\s+/)).toContain('checked');
+      expect(classesOf(firstButton)).toContain('checked');
       userEvent.click(firstButton);
-      expect(firstButton.className.split(/\s+/)).toContain('unchecked');
+      expect(classesOf(firstButton)).toContain('unchecked');
+    });
+
+    it('coordinates buttons independently', () => {
+      const elements = ['1', '2', '3', '4'];
+
+      render(<AlikeLogicGrid elements={elements} />);
+      const buttons = screen.getAllByRole('button');
+      const firstButton = buttons[0];
+      const secondButton = buttons[1];
+      const nextRowButton = buttons[4];
+
+      const validateButtonStatesAs = (firstButtonState, secondButtonState, nextRowButtonState) => {
+        expect(classesOf(firstButton)).toContain(firstButtonState);
+        expect(classesOf(secondButton)).toContain(secondButtonState);
+        expect(classesOf(nextRowButton)).toContain(nextRowButtonState);
+      };
+
+      validateButtonStatesAs('unchecked', 'unchecked', 'unchecked');
+      userEvent.click(firstButton);
+      validateButtonStatesAs('crossed', 'unchecked', 'unchecked');
+      userEvent.click(secondButton);
+      userEvent.click(secondButton);
+      validateButtonStatesAs('crossed', 'checked', 'unchecked');
     });
   });
 });
