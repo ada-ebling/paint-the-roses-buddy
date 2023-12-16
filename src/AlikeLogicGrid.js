@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import styles from './AlikeLogicGrid.module.css';
 
+const BUTTON_STATES = ['unchecked', 'crossed', 'checked'];
+
 export function AlikeLogicGrid({ elements }) {
-  const [buttonChecked, setButtonChecked] = useState('unchecked');
+  const [buttonChecked, setButtonChecked] = useState(BUTTON_STATES[0]);
+
+  const nextButtonState = (currentButtonState) => {
+    const index = BUTTON_STATES.findIndex((el) => currentButtonState === el);
+    return index >= 2 ? BUTTON_STATES[0] : BUTTON_STATES[index + 1];
+  };
 
   const onCheckboxClick = () => {
-    setButtonChecked('checked');
-  }
+    setButtonChecked(nextButtonState(buttonChecked));
+  };
 
   return (<table>
     <thead>
