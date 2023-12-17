@@ -34,7 +34,7 @@ export function LogicGrid({ elements }) {
       </tr>
     </thead>
     <tbody>
-      {elements.map((element, elementIndex) => {
+      {[...elements].reverse().map((element, elementIndex) => {
         return (<tr key={element.concat('content row')}>
           <td>{element}</td>
           {Array.from(Array(elements.length - elementIndex), (_el, idx) => {
