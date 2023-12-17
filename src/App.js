@@ -4,7 +4,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <LogicGrid elements={['🟥', '🦩', '🟨', '🟪']} />
+      <div className='Flex'>
+        <LogicGrid elements={['🟥', '🦩', '🟨', '🟪']} secondSet={['♠', '♣', '♥', '♦']} />
+        <LogicGrid elements={['🟥', '🦩', '🟨', '🟪']} />
+      </div>
       <LogicGrid elements={['♠', '♣', '♥', '♦']} />
     </div>
   );
