@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { AlikeLogicGrid } from './AlikeLogicGrid';
+import { LogicGrid } from './LogicGrid';
 import userEvent from '@testing-library/user-event';
 
-describe('AlikeLogicGrid', () => {
+describe('LogicGrid', () => {
   it('renders enough buttons', () => {
     const elements = ['1', '2', '3', '4'];
 
-    render(<AlikeLogicGrid elements={elements} />);
+    render(<LogicGrid elements={elements} />);
     const expectedNumber = ((elements.length + 1) * elements.length) / 2;
     expect(screen.queryAllByRole('button').length).toEqual(expectedNumber);
   });
@@ -17,7 +17,7 @@ describe('AlikeLogicGrid', () => {
     it('cycles through three classes on click', () => {
       const elements = ['1', '2', '3', '4'];
 
-      render(<AlikeLogicGrid elements={elements} />);
+      render(<LogicGrid elements={elements} />);
       const firstButton = screen.getAllByRole('button')[0];
       expect(classesOf(firstButton)).toContain('unchecked');
       userEvent.click(firstButton);
@@ -31,7 +31,7 @@ describe('AlikeLogicGrid', () => {
     it('coordinates buttons independently', () => {
       const elements = ['1', '2', '3', '4'];
 
-      render(<AlikeLogicGrid elements={elements} />);
+      render(<LogicGrid elements={elements} />);
       const buttons = screen.getAllByRole('button');
       const firstButton = buttons[0];
       const secondButton = buttons[1];

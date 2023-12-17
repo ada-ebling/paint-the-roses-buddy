@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import styles from './AlikeLogicGrid.module.css';
+import styles from './LogicGrid.module.css';
 
 const BUTTON_STATES = ['unchecked', 'crossed', 'checked'];
 
-export function AlikeLogicGrid({ elements }) {
+export function LogicGrid({ elements }) {
   const [buttonStates, setButtonStates] = useState(Array.from(elements, () => Array.from(elements, () => BUTTON_STATES[0])));
 
   const nextButtonState = (currentButtonState) => {
