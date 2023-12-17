@@ -21,6 +21,23 @@ describe('LogicGrid', () => {
     expect(within(rows[4]).getByText('1')).toBeInTheDocument();
   });
 
+  it('renders more buttons when a second set of elements are passed in', () => {
+    const elements = ['H', 'He', 'Li', 'Be'];
+    const numbers = ['1', '2', '3', '4'];
+
+    render(<LogicGrid elements={elements} secondSet={numbers} />);
+    const expectedNumber = elements.length * numbers.length;
+    expect(screen.queryAllByRole('button').length).toEqual(expectedNumber);
+  });
+
+  it('renders second set elements as labels', () => {
+    const elements = ['H', 'He', 'Li', 'Be'];
+    const numbers = ['1', '2', '3', '4'];
+
+    render(<LogicGrid elements={elements} secondSet={numbers} />);
+    screen.getByText('1');
+  });
+
   describe('buttons', () => {
     const classesOf = (element) => element.className.split(/\s+/);
 
