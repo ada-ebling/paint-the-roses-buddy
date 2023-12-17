@@ -1,14 +1,41 @@
-import { render, screen } from '@testing-library/react';
-import { AlikeLogicGrid } from './AlikeLogicGrid';
+import { render, screen, within } from '@testing-library/react';
+import { LogicGrid } from './LogicGrid';
 import userEvent from '@testing-library/user-event';
 
-describe('AlikeLogicGrid', () => {
+describe('LogicGrid', () => {
   it('renders enough buttons', () => {
     const elements = ['1', '2', '3', '4'];
 
-    render(<AlikeLogicGrid elements={elements} />);
+    render(<LogicGrid elements={elements} />);
     const expectedNumber = ((elements.length + 1) * elements.length) / 2;
     expect(screen.queryAllByRole('button').length).toEqual(expectedNumber);
+  });
+
+  it('renders elements in reverse order vertically (bottom to top)', () => {
+    const elements = ['1', '2', '3', '4'];
+    render(<LogicGrid elements={elements} />);
+    const rows = screen.getAllByRole('row');
+    expect(within(rows[1]).getByText('4')).toBeInTheDocument();
+    expect(within(rows[2]).getByText('3')).toBeInTheDocument();
+    expect(within(rows[3]).getByText('2')).toBeInTheDocument();
+    expect(within(rows[4]).getByText('1')).toBeInTheDocument();
+  });
+
+  it('renders more buttons when a second set of elements are passed in', () => {
+    const elements = ['H', 'He', 'Li', 'Be'];
+    const numbers = ['1', '2', '3', '4'];
+
+    render(<LogicGrid elements={elements} secondSet={numbers} />);
+    const expectedNumber = elements.length * numbers.length;
+    expect(screen.queryAllByRole('button').length).toEqual(expectedNumber);
+  });
+
+  it('renders second set elements as labels', () => {
+    const elements = ['H', 'He', 'Li', 'Be'];
+    const numbers = ['1', '2', '3', '4'];
+
+    render(<LogicGrid elements={elements} secondSet={numbers} />);
+    screen.getByText('1');
   });
 
   describe('buttons', () => {
@@ -17,7 +44,7 @@ describe('AlikeLogicGrid', () => {
     it('cycles through three classes on click', () => {
       const elements = ['1', '2', '3', '4'];
 
-      render(<AlikeLogicGrid elements={elements} />);
+      render(<LogicGrid elements={elements} />);
       const firstButton = screen.getAllByRole('button')[0];
       expect(classesOf(firstButton)).toContain('unchecked');
       userEvent.click(firstButton);
@@ -31,7 +58,7 @@ describe('AlikeLogicGrid', () => {
     it('coordinates buttons independently', () => {
       const elements = ['1', '2', '3', '4'];
 
-      render(<AlikeLogicGrid elements={elements} />);
+      render(<LogicGrid elements={elements} />);
       const buttons = screen.getAllByRole('button');
       const firstButton = buttons[0];
       const secondButton = buttons[1];

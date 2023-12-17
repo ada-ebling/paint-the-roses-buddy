@@ -1,11 +1,14 @@
-import { AlikeLogicGrid } from './AlikeLogicGrid';
+import { LogicGrid } from './LogicGrid';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <AlikeLogicGrid elements={['🟥', '🦩', '🟨', '🟪']} />
-      <AlikeLogicGrid elements={['♠', '♣', '♥', '♦']} />
+      <div className='Flex'>
+        <LogicGrid elements={['🟥', '🦩', '🟨', '🟪']} secondSet={['♠', '♣', '♥', '♦']} />
+        <LogicGrid elements={['🟥', '🦩', '🟨', '🟪']} />
+      </div>
+      <LogicGrid elements={['♠', '♣', '♥', '♦']} />
     </div>
   );
 }
